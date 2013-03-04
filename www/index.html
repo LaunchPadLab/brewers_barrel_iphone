@@ -22,6 +22,7 @@
         <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
         <div class="content">
             <ul class="list inset">
+              <p class="loading"><img src="img/loading.gif"></p>
             </ul>
         </div>
         
@@ -35,32 +36,29 @@
 
 
             $.ajax({
-              url: url + "recipes.json",
-              success: function(data){
-                data.forEach(function(recipe){
-                  $('ul.list').append('<li><a class="recipe_item" href="#" data-recipe="' + recipe.id +'"><strong>' + recipe.name + '</strong><span class="chevron"></span></a></li>');
-                });
-                $('a.recipe_item').bind('click', function(){
-                  $.ajax({
-                    url: url + "recipes/" + $(this).attr('data-recipe')+".json",
-                    success: function(data){
-                      $('header.bar-title').html('<a class="button-prev" data-transition="slide-out" href="index.html">Back</a><h1 class="title">Recipe</h1>');
-                      // $('span.recipe_style').text(data.style);
-                      $('div.content').html(show_template(data));
-                    } 
-                  });
-                  return false;
-
-                });
-              }
-            });
+                          url: url + "recipes.json",
+                          success: function(data){
+                            $('ul.list').html('');
+                            data.forEach(function(recipe){
+                              $('ul.list').append('<li><a class="recipe_item" href="#" data-recipe="' + recipe.id +'"><strong>' + recipe.name + '</strong><span class="chevron"></span></a></li>');
+                            });
+                            $('a.recipe_item').bind('click', function(){
+                              $('div.content').html('<p class="loading"><img src="img/loading.gif"></p>');
+                              $.ajax({
+                                url: url + "recipes/" + $(this).attr('data-recipe')+".json",
+                                success: function(data){
+                                  $('header.bar-title').html('<a class="button-prev" data-transition="slide-out" href="index.html">Back</a><h1 class="title">Recipe</h1>');
+                                  // $('span.recipe_style').text(data.style);
+                                  $('div.content').html(show_template(data));
+                                } 
+                              });
+                              return false;
+            
+                            });
+                          }
+                        });
             
           })()
-
-                  
-
-
-
         </script>
         
     </body>
