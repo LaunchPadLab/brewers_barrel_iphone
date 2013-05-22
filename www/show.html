@@ -30,10 +30,10 @@
     <ul class="list inset">
     {{#each item in model}}
       <li>
-        {{#linkTo recipes.show item }}
-          {{  item.name }}
+        <a href="#">
+          {{ item.name }} | {{ item.type }}
           <span class="chevron"></span>
-        {{/linkTo}}
+        </a
       </li>
     {{/each}}
     </ul>
@@ -46,5 +46,3 @@
 
 </body>
 </html>
-
-

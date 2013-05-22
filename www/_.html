@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>The Brewer's Barrel</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="format-detection" content="telephone=no" />
+            <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+            <link rel="stylesheet" type="text/css" href="css/index.css" />
+            <!-- Include the compiled Ratchet CSS -->
+            <link rel="stylesheet" href="css/ratchet.css">
+            <script src="js/template.js"></script>
+            <script src="js/libs/jquery-1.9.1.js"></script>
+            <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+            <script src="js/libs/ember-1.0.0-rc.3.js"></script>
+            <script src="js/app.js"></script>
+
+    </head>
+
+    <body>
+        <!-- Make sure all your bars are the first things in your <body> -->
+        <header class="bar-title">
+            <h1 class="title">Recipes</h1>
+        </header>
+      
+
+        
+        <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+
+        
+        <script type="text/javascript" src="cordova-2.4.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+            
+            
+            (function(){
+              var url = "http://thebrewersbarrel.com/"
+            
+            
+            $.ajax({
+                          url: url + "recipes.json",
+                          success: function(data){
+                            $('ul.list').html('');
+                            data.forEach(function(recipe){
+                              $('ul.list').append('<li><a class="recipe_item" href="#" data-recipe="' + recipe.id +'"><strong>' + recipe.name + '</strong><span class="chevron"></span></a></li>');
+                            });
+                            $('a.recipe_item').bind('click', function(){
+                              $('div.content').html('<p class="loading"><img src="img/loading.gif"></p>');
+                              $.ajax({
+                                url: url + "recipes/" + $(this).attr('data-recipe')+".json",
+                                success: function(data){
+                                  $('header.bar-title').html('<a class="button-prev" data-transition="slide-out" href="index.html">Back</a><h1 class="title">Recipe</h1>');
+                                  // $('span.recipe_style').text(data.style);
+                                  $('div.content').html(show_template(data));
+                                } 
+                              });
+                              return false;
+            
+                            });
+                          }
+                        });
+            
+          })()
+        </script>
+        
+    </body>
+</html>
