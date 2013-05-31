@@ -1,3 +1,14 @@
-<ul class="list">
-  <li>{{ recipe.name }}</li>
-</ul>
+<header class="bar-title">
+  <a class="button-prev" href="#/">
+    Back
+  </a>
+  <h1 class="title">Recipe</h1>
+</header>
+<div class="content">
+  <ul class="list">
+    <li>Name: {{ recipe.name }}</li>
+    <li>Style: {{ recipe.style }}</li>
+    <li>Type: {{ recipe.recipe_type }}</li>
+    <li>Tasting Notes: {{ recipe.tasting_notes }}</li>
+  </ul>
+</div>

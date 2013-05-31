@@ -1,69 +1,57 @@
-<!doctype html>
-<html lang="en" ng-app
+<!DOCTYPE html>
+<html ng-app="App">
 <head>
-  <meta charset="utf-8">
-  <title>The Brewer's Barrel</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-  <link rel="stylesheet" type="text/css" href="css/index.css" />
-  
-  <link rel="stylesheet" href="css/ratchet.css">
-  <script src="js/lib/angular.min.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/app.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/ratchet.css">
+    <title>Brewer's Barrel</title>
 </head>
-<body ng-controller="RecipesCtrl">
-  
-  <header class="bar-title">
-    <h1 class="title">Recipes</h1>
-  </header>
-  <div class="content">
-    <ul class="list">
-      <li ng-repeat="recipe in recipes">
-        <a href="recipes/{{ recipe.id }}">
-          {{ recipe.name }}
-          <span class="chevron"></span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
+<body>
+
+  <div ng-view></div>
+
   <nav class="bar-tab">
     <ul class="tab-inner">
       <li class="tab-item active">
-        <a href="#">
+        <a href="#/">
           <img class="tab-icon" src="img/icon-home.png">
-          <div class="tab-label">Label</div>
+          <div class="tab-label">Home</div>
         </a>
       </li>
       <li class="tab-item">
-        <a href="#">
+        <a href="#/sign_in">
           <img class="tab-icon" src="img/icon-profile.png">
-          <div class="tab-label">Label</div>
+          <div class="tab-label">Profile</div>
         </a>
       </li>
       <li class="tab-item">
         <a href="#">
           <img class="tab-icon" src="img/icon-messages.png">
-          <div class="tab-label">Label</div>
-        </a>
-      </li>
-      <li class="tab-item">
-        <a href="#">
-          <img class="tab-icon" src="img/icon-hamburger.png">
-          <div class="tab-label">Label</div>
+          <div class="tab-label">Messages</div>
         </a>
       </li>
       <li class="tab-item">
         <a href="#">
           <img class="tab-icon" src="img/icon-settings.png">
-          <div class="tab-label">Label</div>
+          <div class="tab-label">Settings</div>
         </a>
       </li>
     </ul>
   </nav>
- 
+
+    <!-- Libs -->
+    <script type="text/javascript" src="js/lib/cordova-2.4.0.js"></script>
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+
+    <!-- App -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/routers.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
 </body>
 </html>
 
